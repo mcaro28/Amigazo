@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amigazo-Login</title>
+    <!-- update the version number as needed -->
+    <script defer src="./__/firebase/4.5.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="./__/firebase/4.5.0/firebase-auth.js"></script>
+    <script defer src="./__/firebase/4.5.0/firebase-database.js"></script>
+    <script defer src="./__/firebase/4.5.0/firebase-messaging.js"></script>
+    <script defer src="./__/firebase/4.5.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="./__/firebase/init.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+</head>
+
+<body>
+    <div id="message" class "animate">
+        <div class="imgcontainer">
+            <img src="img/avatar.png" alt="Avatar" class="avatar">
+        </div>
+        <label>
+            <b>Username</b>
+        </label>
+        <input type="email" placeholder="Enter Username" id="uname" required>
+
+        <label>
+            <b>Password</b>
+        </label>
+        <input type="password" placeholder="Enter Password" id="psw" required>
+
+        <div id="loginEP" class="btnLogin">Login</div>
+        <input type="checkbox" checked="checked"> Remember me
+        <div id="container"></div>
+        <div id="loginG" class="loginBtn loginBtn--google">Login with Google</div>
+        <p id="load"></p>
+    </div>
+    <script defer src="js/login.js"></script>
+</body>
+
+</html>

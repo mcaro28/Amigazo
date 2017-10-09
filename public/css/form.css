@@ -1,4 +1,4 @@
-input[type=text],input[type=number], select {
+input[type=text],input[type=number],input[type=password], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -21,24 +21,3 @@ input[type=submit]{
 input[type=submit]:hover {
     background-color: #45a049;
 }
-/*
-input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}*/
