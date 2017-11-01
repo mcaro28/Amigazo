@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MAJ</title>
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/4.6.0/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/4.6.0/firebase-auth.js"></script>
+  <script defer src="/__/firebase/4.6.0/firebase-database.js"></script>
+  <script defer src="/__/firebase/4.6.0/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/4.6.0/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+  
+  <!--  Theme Style -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
+  <link href="css/menu.css" rel="stylesheet">
+  <link href="css/loading.css" rel="stylesheet">
+
+
+</head>
+
+<body ng-controller="mainController">
+  <!-- MAIN CONTENT AND INJECTED VIEWS -->
+  <nav ng-if="logged" ng-class="activeMenu ? 'openNav':''">
+    <div class="navHeader">
+      <img src="img/avatar.png" alt="..." ng-click="toggleNav()">
+    </div>
+    <li class="menu" ng-repeat="p in menu.Primary" ng-click="toggleActive(p.id,'active')" id="{{p.id}}">
+      <a>
+        <i class="glyphicon glyphicon-{{p.icon}}"></i> {{p.name}}
+        <span class="glyphicon glyphicon-chevron-down"></span>
+      </a>
+      <ul class="submenu">
+        <li ng-repeat="s in menu.Secondary | filter:{parent:p.id}">
+          <a href="{{s.ruta}}">{{s.name}}</a>
+        </li>
+      </ul>
+    </li>
+    <div ng-class="activeMenu ? 'nav-footer open': 'nav-footer' ">
+      <a href="" class="test" data-toggle="tooltip" title="Cerrar sesion" ng-click="modalSession()" data-target="#modalSession">
+        <span class="glyphicon glyphicon-off"></span>
+      </a>
+    </div>
+  </nav>
+  <div ng-if="logged" ng-class="activeMenu ? 'header closeNav':'header' ">
+    <div class="menuHeader">
+      <i class="glyphicon glyphicon-menu-hamburger" ng-click="toggleNav()"></i>
+    </div>
+  </div>
+
+  <div ng-view  ng-class="activeMenu ? 'content closeNav':'content' " ></div>
+
+  <div class="modal fade" id="modalSession" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Cerrar sesion</h4>
+        </div>
+        <div class="modal-body">
+          <p>¿Esta seguro(a) que desea salir de la aplicacion?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="signOut()">Si</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- SCRIPT -->
+  <script src="angularjs/angular.min.js"></script>
+  <script src="angularjs/angular-resource.min.js"></script>
+  <script src="angularjs/angular-route.min.js"></script>
+  <script src="jquery/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/stateMenu.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/home1.js"></script>
+  <!-- SCRIPT -->
+</body>
+
+</html>
