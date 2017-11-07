@@ -6,14 +6,6 @@
     <input type="password" placeholder="Enter Password" id="psw" ng-model="psw" ng-keyup="alert = false" required>
     <div class="btnLogin" ng-click="loginEP()">Login</div>
     <div id="container"></div>
-    <div class="loginBtn loginBtn--google" ng-click="loginPopup()">Login with Google</div>
-    <div ng-if="alert" class="alert alert-danger" role="alert">
-        {{load}}
-    </div>
+    <div class="loginBtn loginBtn--google" ng-click="loginPopup()">Login with Google</div>    
 </div>
 
-<div id="content">
-    <div class="loading reverse"></div>
-    <div class="loading animate"></div>
-    <span>Cargando por favor espere ...</span>
-</div>

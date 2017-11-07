@@ -34,22 +34,25 @@ angular.module('app').controller('ctrlLogin', function ($scope, $rootScope) {
     };
 
     $scope.loginEP = function () {
-
+        loading.open({
+            textMessage: 'Iniciando session espere por favor ...'
+        });
         try {
 
             firebase.auth().signInWithEmailAndPassword($scope.uname, $scope.psw).then(function (u) {
-
+                loading.close();
             }).catch(function (error) {
                 // Handle Errors here.            
-                $scope.alert = true;
-                var errorCode = error.code;
-                $scope.load = error.message || $scope.load;
-                console.log(error);
+                loading.close();
+                alertMessage.open({
+                    text: msgFirebase[error.code]
+                });
             });
         } catch (e) {
-            $scope.alert = true;
-            $scope.load = e.message || $scope.load;
-            console.log(e);
+            loading.close();
+            alertMessage.open({
+                text: msgFirebase[e.code]
+            });
         }
     }
 });

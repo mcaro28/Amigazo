@@ -15,7 +15,7 @@
   <script defer src="/__/firebase/4.6.0/firebase-storage.js"></script>
   <!-- initialize the SDK after all desired features are loaded -->
   <script defer src="/__/firebase/init.js"></script>
-  
+
   <!--  Theme Style -->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -28,6 +28,8 @@
 
 <body ng-controller="mainController">
   <!-- MAIN CONTENT AND INJECTED VIEWS -->
+
+  <!-- MENU -->
   <nav ng-if="logged" ng-class="activeMenu ? 'openNav':''">
     <div class="navHeader">
       <img src="img/avatar.png" alt="..." ng-click="toggleNav()">
@@ -49,14 +51,21 @@
       </a>
     </div>
   </nav>
+  <!-- MENU -->
+
+  <!-- ACTIVE MENU -->
   <div ng-if="logged" ng-class="activeMenu ? 'header closeNav':'header' ">
     <div class="menuHeader">
       <i class="glyphicon glyphicon-menu-hamburger" ng-click="toggleNav()"></i>
     </div>
   </div>
+  <!-- ACTIVE MENU -->
 
-  <div ng-view  ng-class="activeMenu ? 'content closeNav':'content' " ></div>
+  <!-- CONTENT VIEWS -->
+  <div ng-view ng-class="activeMenu ? 'content closeNav':'content' "></div>
+  <!-- CONTENT VIEWS -->
 
+  <!-- MODAL SESSION -->
   <div class="modal fade" id="modalSession" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -75,7 +84,8 @@
       </div>
     </div>
   </div>
-  </div>
+  <!-- MODAL SESSION -->
+
   <!-- SCRIPT -->
   <script src="angularjs/angular.min.js"></script>
   <script src="angularjs/angular-resource.min.js"></script>
@@ -87,7 +97,12 @@
   <script src="js/login.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/home1.js"></script>
+  <script src="jquery/jquery-loading.min.js"></script>
+  <script src="jquery/jquery-alert.min.js"></script>
+  <script src="js/constant.js"></script>
   <!-- SCRIPT -->
+
+  <!-- MAIN CONTENT AND INJECTED VIEWS -->
 </body>
 
 </html>
