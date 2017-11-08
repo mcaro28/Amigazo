@@ -1,86 +1,44 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-  <style>
-    body {
-      background: #ECEFF1;
-      color: rgba(0, 0, 0, 0.87);
-      font-family: Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
 
-    #content {
-      overflow: hidden;
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 100;
-      outline: 0;
-      overflow-y: auto;
-      opacity: 1;
-      background: rgba(0, 0, 0, 0.87);
-    }
+  <script src="rxjs/rx.all.min.js"></script>
+  <script src="jquery/jquery.min.js"></script>
 
-    .loader {
-
-      animation: spin 1s linear infinite;
-      border: 10px solid rgba(255, 255, 255, 0.048);
-      border-radius: 50%;
-      border-top: 10px solid #3498db;
-      height: 80px;
-      margin: 0 auto;
-      -webkit-animation: spin 1s linear infinite;
-      width: 80px;
-    }
-
-
-    @-webkit-keyframes spin {
-      0% {
-        -webkit-transform: rotate(0deg);
-      }
-      25% {
-        -webkit-transform: rotate(90deg);
-      }
-      50% {
-        -webkit-transform: rotate(180deg);
-      }
-      75% {
-        -webkit-transform: rotate(270deg);
-      }
-      100% {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      25% {
-        -webkit-transform: rotate(90deg);
-      }
-      50% {
-        -webkit-transform: rotate(180deg);
-      }
-      75% {
-        -webkit-transform: rotate(270deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
 </head>
 
 <body>
-  <div id="content">
-    <div class="loader"></div>
-  </div>
-
+  <input type="text" id="input" />
 </body>
+<script type="text/javascript">
+
+  /*  var clicks = Rx.Observable.fromEvent(document, 'click');
+   var key = Rx.Observable.fromEvent(document, 'keyup');
+   var timer = Rx.Observable.interval(1000);
+   var clicksOrTimer = Rx.Observable.merge(clicks, timer, key);
+   clicksOrTimer.subscribe(x => console.log(x)); */
+
+
+  function getApi() {
+    var promise = $.ajax({
+      url: 'http://localhost/api/',
+      dataType: 'json',
+      data: {
+        action: 'opensearch',
+        format: 'json'
+      }
+    }).promise();
+    return Rx.Observable.fromPromise(promise);
+  }
+
+
+  var key = Rx.Observable.fromEvent(document, 'keyup');
+  var timer = Rx.Observable.interval(1000);
+  var clicksOrTimer = Rx.Observable.merge(timer, key);
+  clicksOrTimer.flatMapLatest(getApi).subscribe((a) => {
+    console.log(a);
+  });
+
+</script>
 
 </html>
